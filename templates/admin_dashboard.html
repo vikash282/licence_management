@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>License Management</h1>
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="alert alert-success">{{ messages[0] }}</div>
+            {% endif %}
+        {% endwith %}
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>License Key</th>
+                    <th>Product ID</th>
+                    <th>User</th>
+                    <th>Status</th>
+                    <th>Expiration Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for license in licenses %}
+                <tr>
+                    <td>{{ license.license_key }}</td>
+                    <td>{{ license.product_id }}</td>
+                    <td>{{ license.user }}</td>
+                    <td>{{ 'Active' if license.active else 'Revoked' }}</td>
+                    <td>{{ license.expiration_date }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('revoke_license', license_id=license.id) }}">
+                            <button type="submit">Revoke</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Add New License</h2>
+        <form method="POST" action="{{ url_for('add_license') }}">
+            <input type="text" name="license_key" placeholder="License Key" required>
+            <input type="text" name="product_id" placeholder="Product ID" required>
+            <input type="text" name="user" placeholder="User" required>
+            <input type="date" name="expiration_date" required>
+            <button type="submit">Add License</button>
+        </form>
+    </div>
+</body>
+</html>
