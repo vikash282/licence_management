@@ -1,10 +1,4 @@
-Perfect. Below is a **clean, industry-grade, recruiter-ready README** written **specifically for your `licence_management` project**, aligned with the code you shared and the improvements we discussed.
-
-You can **copy–paste this directly into `README.md`**.
-
----
-
-# 🔐 License Management System
+#License Management System
 
 A secure **License Management and Validation System** built using **Flask**, **SQLAlchemy**, and **Flask-Login**, designed to manage software licenses with authentication-protected admin access and a public license validation API.
 
