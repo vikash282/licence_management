@@ -1,4 +1,4 @@
-#License Management System
+# License Management System
 
 A secure **License Management and Validation System** built using **Flask**, **SQLAlchemy**, and **Flask-Login**, designed to manage software licenses with authentication-protected admin access and a public license validation API.
 
